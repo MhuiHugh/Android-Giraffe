@@ -1,1 +1,1 @@
-include ':Widget'
+include ':Giraffe', ':Widget'

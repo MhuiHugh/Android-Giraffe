@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Android-Giraffe.iml" filepath="$PROJECT_DIR$/Android-Giraffe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Giraffe/Giraffe.iml" filepath="$PROJECT_DIR$/Giraffe/Giraffe.iml" />
       <module fileurl="file://$PROJECT_DIR$/Widget/Widget.iml" filepath="$PROJECT_DIR$/Widget/Widget.iml" />
     </modules>
   </component>
