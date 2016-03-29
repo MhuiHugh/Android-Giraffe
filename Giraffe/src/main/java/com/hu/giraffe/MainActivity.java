@@ -1,5 +1,7 @@
 package com.hu.giraffe;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,12 +15,19 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.hu.widget.HalfImageButton;
+import com.hu.widget.HorizontalScrollIndicatorView;
+import com.hu.widget.HorizontalScrollViewAdapter;
 
-public class MainActivity extends AppCompatActivity implements View.OnKeyListener {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity implements View.OnKeyListener, HorizontalScrollIndicatorView.OnItemClickListener {
 
     private final String TAG = this.getClass().getSimpleName();
 
     HalfImageButton halfImgBtn;
+    HorizontalScrollIndicatorView horizontalScrollIndicatorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +88,10 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onClick(View view, int pos) {
+
+    }
 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -116,13 +129,26 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             }
         });
 
-        halfImgBtn=(HalfImageButton)findViewById(R.id.half_img_btn_pay);
+        halfImgBtn = (HalfImageButton) findViewById(R.id.half_img_btn_welcome);
         halfImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"HalfImageButton",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "HalfImageButton", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(MainActivity.this, GiraffeActivity.class);
+                startActivity(intent);
             }
         });
+
+        List<Integer> colors = new ArrayList<>();
+        Random random = new Random(2);
+        for (int i = 0; i < 50; i++) {
+            colors.add(Color.argb(255, 50 * i, random.nextInt(255), random.nextInt(255)));
+        }
+        horizontalScrollIndicatorView = (HorizontalScrollIndicatorView) this.findViewById(R.id.color_indicator);
+        horizontalScrollIndicatorView.setAdapter(new HorizontalScrollViewAdapter(this, colors));
+        horizontalScrollIndicatorView.setOnItemClickListener(this);
+
     }
 
 }

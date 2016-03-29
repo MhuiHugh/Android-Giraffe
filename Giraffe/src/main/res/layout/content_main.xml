@@ -13,9 +13,24 @@
     tools:showIn="@layout/activity_main">
 
     <com.hu.widget.HalfImageButton
-        android:id="@+id/half_img_btn_pay"
+        android:id="@+id/half_img_btn_welcome"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
         app:ImgViewSrc="@mipmap/welcome"/>
+
+    <com.hu.widget.HorizontalScrollIndicatorView
+        android:id="@+id/color_indicator"
+        android:layout_below="@+id/half_img_btn_welcome"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:scrollbars="none"
+        android:layout_height="100dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </com.hu.widget.HorizontalScrollIndicatorView>
 
 </RelativeLayout>
