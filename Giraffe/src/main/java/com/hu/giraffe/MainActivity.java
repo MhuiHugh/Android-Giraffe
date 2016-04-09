@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.hu.widget.HalfImageButton;
 import com.hu.widget.HorizontalScrollIndicatorView;
 import com.hu.widget.HorizontalScrollViewAdapter;
+import com.hu.widget.StatusBarCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
      */
     private void init() {
         Log.v(TAG, "init()");
+        StatusBarCompat.compat(this,0xff000000);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

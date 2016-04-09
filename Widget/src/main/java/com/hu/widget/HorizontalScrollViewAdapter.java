@@ -14,7 +14,6 @@ public class HorizontalScrollViewAdapter {
     private LayoutInflater mInflater;
     private List<Integer> mDatas;
 
-
     public HorizontalScrollViewAdapter(Context context, List<Integer> mDatas) {
         this.mContext = context;
         mInflater = LayoutInflater.from(context);
