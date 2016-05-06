@@ -12,6 +12,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.hu.widget.HalfImageButton;
@@ -119,10 +121,10 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     private void init() {
         Log.v(TAG, "init()");
         StatusBarCompat.compat(this,0xff000000);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_floating_action_btn);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             }
         });
 
-        halfImgBtn = (HalfImageButton) findViewById(R.id.half_img_btn_welcome);
+        halfImgBtn = (HalfImageButton) findViewById(R.id.main_half_img_btn_welcome);
         halfImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         for (int i = 0; i < 50; i++) {
             colors.add(Color.argb(255, 50 * i, random.nextInt(255), random.nextInt(255)));
         }
-        horizontalScrollIndicatorView = (HorizontalScrollIndicatorView) this.findViewById(R.id.color_indicator);
+        horizontalScrollIndicatorView = (HorizontalScrollIndicatorView) this.findViewById(R.id.main_color_indicator);
         horizontalScrollIndicatorView.setAdapter(new HorizontalScrollViewAdapter(this, colors));
         horizontalScrollIndicatorView.setOnItemClickListener(this);
 

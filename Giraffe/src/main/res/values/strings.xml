@@ -3,6 +3,10 @@
     <string name="action_settings">Settings</string>
 
     <string name="title_activity_giraffe">GiraffeActivity</string>
+
+    <string name="main_login">登    录</string>
+    <string name="main_toggle_btn_on">ToggleButton On</string>
+    <string name="main_toggle_btn_off">ToggleButton Off</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

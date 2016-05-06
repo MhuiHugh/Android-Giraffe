@@ -6,7 +6,7 @@ buildscript {
         jcenter {url 'http://jcenter.j99.so/'}
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0-alpha4'
+        classpath 'com.android.tools.build:gradle:2.1.0'
     }
 }
 

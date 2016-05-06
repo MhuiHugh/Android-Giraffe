@@ -13,15 +13,15 @@
     tools:showIn="@layout/activity_main">
 
     <com.hu.widget.HalfImageButton
-        android:id="@+id/half_img_btn_welcome"
+        android:id="@+id/main_half_img_btn_welcome"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
-        app:ImgViewSrc="@mipmap/welcome"/>
+        app:ImgViewSrc="@drawable/welcome"/>
 
     <com.hu.widget.HorizontalScrollIndicatorView
-        android:id="@+id/color_indicator"
+        android:id="@+id/main_color_indicator"
         android:layout_marginTop="@dimen/dp_10"
-        android:layout_below="@+id/half_img_btn_welcome"
+        android:layout_below="@+id/main_half_img_btn_welcome"
         android:layout_width="match_parent"
         android:background="@android:color/white"
         android:scrollbars="none"
@@ -33,5 +33,33 @@
             android:orientation="horizontal" >
         </LinearLayout>
     </com.hu.widget.HorizontalScrollIndicatorView>
+
+   <LinearLayout
+       android:id="@+id/main_lv_circular"
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:weightSum="2"
+       android:layout_below="@+id/main_color_indicator"
+       android:layout_marginTop="@dimen/dp_10"
+       android:layout_height="@dimen/dp_40">
+
+       <Button
+           android:layout_weight="1"
+           android:layout_width="@dimen/dp_0"
+           android:layout_height="wrap_content"
+           android:layout_marginRight="@dimen/dp_10"
+           android:text="@string/main_login"
+           android:background="@drawable/xml_circular_btn_bg"/>
+
+       <ToggleButton
+           android:layout_weight="1"
+           android:layout_width="@dimen/dp_0"
+           android:layout_height="wrap_content"
+           android:textOn="@string/main_toggle_btn_on"
+           android:textOff="@string/main_toggle_btn_off"
+           android:layout_marginLeft="@dimen/dp_10"
+           android:background="@drawable/xml_circular_toggle_btn_bg"/>
+
+   </LinearLayout>
 
 </RelativeLayout>
