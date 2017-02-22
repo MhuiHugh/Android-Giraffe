@@ -14,10 +14,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 横向滚动下标指示适配器
  * Created by Hugh on 6/8/2015.
  */
 public class HorizontalScrollIndicatorView extends HorizontalScrollView implements
         View.OnClickListener {
+
     private final String TAG=this.getClass().getSimpleName();
     private Context mContext;
     /**

@@ -10,11 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 /**
+ * 图片按钮自定义控件，图片宽高为View一半自适应
  * Created by HughM
  */
 public class HalfImageButton extends LinearLayout {
-
-    private final String TAG=this.getClass().getSimpleName();
 
     private ImageView imgView;
     private Drawable src;
@@ -37,4 +36,5 @@ public class HalfImageButton extends LinearLayout {
     public HalfImageButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
+
 }

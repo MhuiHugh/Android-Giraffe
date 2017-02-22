@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 public class HorizontalScrollViewAdapter {
-    private final String TAG = this.getClass().getSimpleName();
+
     private int currentIndex = -1;
     private Context mContext;
     private LayoutInflater mInflater;
