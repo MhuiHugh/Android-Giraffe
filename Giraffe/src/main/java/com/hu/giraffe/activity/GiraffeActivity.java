@@ -10,7 +10,7 @@ import android.view.View;
 import com.hu.giraffe.R;
 import com.hu.widget.StatusBarCompat;
 
-public class GiraffeActivity extends AppCompatActivity {
+public class GiraffeActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +19,8 @@ public class GiraffeActivity extends AppCompatActivity {
         init();
     }
 
-    private void init(){
-        StatusBarCompat.compat(this,0xff4137BD);
+    private void init() {
+        StatusBarCompat.compat(this,getResources().getColor(R.color.colorPrimaryDark));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.giraffe_toolbar);
         setSupportActionBar(toolbar);
@@ -35,5 +35,19 @@ public class GiraffeActivity extends AppCompatActivity {
         });
     }
 
+    //--------------------------------------
+
+    @Override
+    public String activityName() {
+        return getClass().getSimpleName();
+    }
+
+    @Override
+    public void finishActivity() {
+
+        finish();
+    }
+
+    //--------------------------------------
 
 }

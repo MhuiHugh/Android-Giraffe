@@ -10,7 +10,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/giraffe_app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40"
+        android:layout_height="@dimen/dp_180"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -32,7 +32,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="What are you going to do?"/>
+                android:text="What are you going to do?" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -44,7 +44,7 @@
         android:id="@+id/giraffe_floating_action_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_10"
+        android:layout_margin="@dimen/dp_16"
         android:src="@android:drawable/ic_dialog_email"
         app:layout_anchor="@id/giraffe_app_bar"
         app:layout_anchorGravity="bottom|end" />

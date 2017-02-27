@@ -1,11 +1,10 @@
-package com.hu.giraffe;
+package com.hu.giraffe.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -14,7 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.hu.giraffe.activity.GiraffeActivity;
+import com.hu.giraffe.R;
+import com.hu.giraffe.utils.LogUtil;
 import com.hu.widget.HalfImageButton;
 import com.hu.widget.HorizontalScrollIndicatorView;
 import com.hu.widget.HorizontalScrollViewAdapter;
@@ -24,12 +24,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements View.OnKeyListener, HorizontalScrollIndicatorView.OnItemClickListener {
+public class MainActivity extends BaseActivity implements View.OnKeyListener, HorizontalScrollIndicatorView.OnItemClickListener {
 
     private final String TAG = this.getClass().getSimpleName();
 
     HalfImageButton halfImgBtn;
     HorizontalScrollIndicatorView horizontalScrollIndicatorView;
+
+    //--------------------
+    long exitTime = 0;//2秒内点击2次返回退出程序
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,32 +44,26 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
     protected void onStart() {
         super.onStart();
-        Log.v(TAG, "onStart()");
+
     }
 
     protected void onResume() {
         super.onResume();
-        Log.v(TAG, "onResume()");
+
     }
 
     protected void onPause() {
         super.onPause();
-        Log.v(TAG, "onPause()");
+
     }
 
     protected void onStop() {
         super.onStop();
-        Log.v(TAG, "onStop()");
+
     }
 
     protected void onDestroy() {
         super.onDestroy();
-        Log.v(TAG, "onDestroy()");
-    }
-
-    public void onLowMemory() {
-        super.onLowMemory();
-        Log.v(TAG, "onLowMemory()");
     }
 
     @Override
@@ -96,21 +93,29 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     }
 
     @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        super.onKeyUp(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_BACK) {//返回按键处理
+            exitApp();
+            return true;
+        } else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {//音量加
 
-        } else if (event.getAction() == KeyEvent.ACTION_UP) {
-            switch (keyCode) {
-                case KeyEvent.KEYCODE_BACK:
-                    finish();
-                    break;
-            }
         }
         return false;
     }
 
+
     //---------------------------------------------------------------------
 
+    @Override
+    public void finishActivity() {
+        this.finish();
+    }
+
+    @Override
+    public String activityName() {
+        return getClass().getSimpleName();
+    }
 
     //---------------------------------------------------------------------
 
@@ -119,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
      */
     private void init() {
         Log.v(TAG, "init()");
-        StatusBarCompat.compat(this,getResources().getColor(R.color.colorPrimaryDark));
+        StatusBarCompat.compat(this, getResources().getColor(R.color.colorPrimaryDark));
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
@@ -151,7 +156,19 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         horizontalScrollIndicatorView = (HorizontalScrollIndicatorView) this.findViewById(R.id.main_color_indicator);
         horizontalScrollIndicatorView.setAdapter(new HorizontalScrollViewAdapter(this, colors));
         horizontalScrollIndicatorView.setOnItemClickListener(this);
+    }
 
+    /**
+     * 退出程序
+     */
+    public void exitApp() {
+        LogUtil.v("exitApp()");
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(getApplicationContext(), getString(R.string.common_exit_app), Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            this.finish();
+        }
     }
 
 }
