@@ -2,18 +2,67 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
+    dexOptions {
+        javaMaxHeapSize "6g"
+    }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    productFlavors {
+        lenovo {}
+        tencent {}
+        wandoujia {}
+
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
     defaultConfig {
         applicationId "com.hu.giraffe"
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        resConfigs "zh"
+        multiDexEnabled true
     }
+
+    signingConfigs {
+        debug {
+            storeFile file('../key.jks')
+            keyAlias "hugh"
+            storePassword "Mhui115key_"
+            keyPassword "Mhui115key_"
+        }
+    }
+
     buildTypes {
         release {
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            minifyEnabled true
+            signingConfig signingConfigs.debug
+            zipAlignEnabled true
+            shrinkResources true
+            ext.enableCrashlytics = false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            debuggable true
+            jniDebuggable false
+            renderscriptDebuggable false
+            minifyEnabled true
+            signingConfig signingConfigs.debug
             minifyEnabled false
+            zipAlignEnabled false
+            ext.enableCrashlytics = false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -22,7 +71,12 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:multidex:1.0+'
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:design:23.2.0'
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile project(':Widget')
 }

@@ -12,10 +12,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.hu.giraffe.activity.GiraffeActivity;
 import com.hu.widget.HalfImageButton;
 import com.hu.widget.HorizontalScrollIndicatorView;
 import com.hu.widget.HorizontalScrollViewAdapter;
@@ -120,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
      */
     private void init() {
         Log.v(TAG, "init()");
-        StatusBarCompat.compat(this,0xff000000);
+        StatusBarCompat.compat(this,getResources().getColor(R.color.colorPrimaryDark));
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 

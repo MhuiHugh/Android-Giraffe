@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.hu.giraffe.GiraffeActivity">
+    tools:context="com.hu.giraffe.activity.GiraffeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/giraffe_app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:layout_height="@dimen/dp_40"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -44,7 +44,7 @@
         android:id="@+id/giraffe_floating_action_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_margin="@dimen/dp_10"
         android:src="@android:drawable/ic_dialog_email"
         app:layout_anchor="@id/giraffe_app_bar"
         app:layout_anchorGravity="bottom|end" />

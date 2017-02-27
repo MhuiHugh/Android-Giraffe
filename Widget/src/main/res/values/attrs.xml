@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--ImageView 图片宽高占View的一半居中-->
     <declare-styleable name="HalfImageButton">
-        <attr name="ImgViewSrc" format="reference"/>
+        <attr name="ImgViewSrc" format="reference" />
+    </declare-styleable>
+
+    <!--圆菜单 参数作用:圆圈背景,点击时外环宽度,字内容,字颜色,字大小-->
+    <declare-styleable name="CircleButton">
+        <attr name="cb_color" format="color" />
+        <attr name="cb_pressedRingWidth" format="dimension" />
+        <attr name="cb_text" format="string" />
+        <attr name="cb_text_color" format="color" />
+        <attr name="cb_text_size" format="dimension" />
     </declare-styleable>
 
 </resources>

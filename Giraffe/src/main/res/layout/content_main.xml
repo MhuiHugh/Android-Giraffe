@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/dp_10"
+    android:paddingLeft="@dimen/dp_6"
+    android:paddingRight="@dimen/dp_6"
+    android:paddingTop="@dimen/dp_10"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.hu.giraffe.MainActivity"
     tools:showIn="@layout/activity_main">
@@ -16,50 +16,51 @@
         android:id="@+id/main_half_img_btn_welcome"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
-        app:ImgViewSrc="@drawable/welcome"/>
+        app:ImgViewSrc="@drawable/welcome" />
 
     <com.hu.widget.HorizontalScrollIndicatorView
         android:id="@+id/main_color_indicator"
-        android:layout_marginTop="@dimen/dp_10"
-        android:layout_below="@+id/main_half_img_btn_welcome"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:layout_below="@+id/main_half_img_btn_welcome"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@android:color/white"
-        android:scrollbars="none"
-        android:layout_height="@dimen/dp_60">
+        android:scrollbars="none">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:orientation="horizontal" >
-        </LinearLayout>
+            android:orientation="horizontal"></LinearLayout>
     </com.hu.widget.HorizontalScrollIndicatorView>
 
-   <LinearLayout
-       android:id="@+id/main_lv_circular"
-       android:orientation="horizontal"
-       android:layout_width="match_parent"
-       android:weightSum="2"
-       android:layout_below="@+id/main_color_indicator"
-       android:layout_marginTop="@dimen/dp_10"
-       android:layout_height="@dimen/dp_40">
+    <LinearLayout
+        android:id="@+id/main_lv_circular"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_below="@+id/main_color_indicator"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-       <Button
-           android:layout_weight="1"
-           android:layout_width="@dimen/dp_0"
-           android:layout_height="wrap_content"
-           android:layout_marginRight="@dimen/dp_10"
-           android:text="@string/main_login"
-           android:background="@drawable/xml_circular_btn_bg"/>
+        <Button
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_weight="1"
+            android:background="@drawable/xml_circular_btnbg_color"
+            android:textColor="@drawable/xml_circular_btntext_color"
+            android:text="@string/main_login" />
 
-       <ToggleButton
-           android:layout_weight="1"
-           android:layout_width="@dimen/dp_0"
-           android:layout_height="wrap_content"
-           android:textOn="@string/main_toggle_btn_on"
-           android:textOff="@string/main_toggle_btn_off"
-           android:layout_marginLeft="@dimen/dp_10"
-           android:background="@drawable/xml_circular_toggle_btn_bg"/>
+        <ToggleButton
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_weight="1"
+            android:background="@drawable/xml_circular_toggle_btn_bg"
+            android:textOff="@string/main_toggle_btn_off"
+            android:textOn="@string/main_toggle_btn_on" />
 
-   </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>
