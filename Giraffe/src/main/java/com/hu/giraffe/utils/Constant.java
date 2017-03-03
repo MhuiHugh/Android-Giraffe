@@ -9,6 +9,7 @@ public class Constant {
     //----------boolean状态标记
     public static boolean isAppRuning = false;//程序是否运行状态
     public static boolean isShowSoftKeyBoard = false;//输入法是否显示
+    public static boolean isMoveCircleBtn=false;//是否拦截
 
     //----------SharedPreferences配置
     public static final String KEY_SHARED_PREFERENCES_NAME = "sp_data";//shardpreferences的xml文件名称

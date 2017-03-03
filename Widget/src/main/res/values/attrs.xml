@@ -15,4 +15,12 @@
         <attr name="cb_text_size" format="dimension" />
     </declare-styleable>
 
+    <!--圆菜单组 参数:在屏幕右边默认false,按钮组距离底部距离,item间距-->
+    <declare-styleable name="CircleSixLayout">
+        <attr name="cs_right" format="boolean" />
+        <attr name="cs_padding_bottom" format="dimension" />
+        <attr name="cs_item_margin" format="dimension" />
+        <attr name="cs_item_width" format="dimension" />
+    </declare-styleable>
+
 </resources>

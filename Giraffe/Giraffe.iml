@@ -43,13 +43,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/lenovoDebug/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lenovoDebug/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lenovoDebug/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/androidTest/lenovo/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/androidTest/lenovo/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/androidTest/lenovo/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/androidTest/lenovo/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/apt/androidTest/lenovo/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/androidTest/lenovo/debug" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/androidTest/lenovo/debug" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovoDebug/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovoDebug/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovoDebug/assets" type="java-test-resource" />
@@ -58,6 +51,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovoDebug/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovoDebug/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovoDebug/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/androidTest/lenovo/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/androidTest/lenovo/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/androidTest/lenovo/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/androidTest/lenovo/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/apt/androidTest/lenovo/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/androidTest/lenovo/debug" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/androidTest/lenovo/debug" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/lenovo/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/lenovo/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/lenovo/assets" type="java-resource" />
@@ -66,14 +66,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/lenovo/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lenovo/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lenovo/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovo/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovo/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovo/assets" type="java-test-resource" />
@@ -82,6 +74,14 @@
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovo/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovo/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testLenovo/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestLenovo/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/assets" type="java-resource" />
@@ -164,10 +164,10 @@
     <orderEntry type="library" exported="" scope="TEST" name="leakcanary-android-no-op-1.5" level="project" />
     <orderEntry type="library" exported="" name="leakcanary-android-1.5" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="junit-4.12" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-23.2.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.2.0" level="project" />
     <orderEntry type="library" exported="" name="animated-vector-drawable-23.2.0" level="project" />
     <orderEntry type="library" exported="" name="support-vector-drawable-23.2.0" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-25.1.1" level="project" />
     <orderEntry type="module" module-name="Widget" exported="" />
   </component>
 </module>

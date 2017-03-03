@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hu.widget.CircleSixLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/circle_menu_csl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cs_item_margin="@dimen/dp_2"
+    app:cs_item_width="@dimen/dp_48"
+    app:cs_padding_bottom="@dimen/dp_20"
+    app:cs_right="true"
+    tools:context="com.hu.giraffe.activity.CircleMenuActivity">
+
+    <com.hu.widget.CircleButton
+        android:id="@+id/circle_two_cbtn"
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48"
+        app:cb_color="@color/c_434bf3"
+        app:cb_text="two"
+        app:cb_text_color="@color/c_999999"
+        app:cb_text_size="16sp" />
+
+    <com.hu.widget.CircleButton
+        android:id="@+id/circle_one_cbtn"
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48"
+        app:cb_color="@color/c_eb1eaf"
+        app:cb_text="one"
+        app:cb_text_color="@color/wite"
+        app:cb_text_size="16sp" />
+
+    <com.hu.widget.CircleButton
+        android:id="@+id/circle_zero_cbtn"
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48"
+        app:cb_color="@color/c_333333"
+        app:cb_text="zero"
+        app:cb_text_color="@color/c_c7edcc"
+        app:cb_text_size="16sp" />
+
+</com.hu.widget.CircleSixLayout>
+

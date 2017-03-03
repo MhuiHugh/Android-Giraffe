@@ -11,10 +11,11 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.FrameLayout.LayoutParams;
 
-public class CircleButton extends ImageView implements View.OnLongClickListener {
+public class CircleButton extends ImageView {
 
     private final String TAG = this.getClass().getSimpleName();
 
@@ -57,8 +58,9 @@ public class CircleButton extends ImageView implements View.OnLongClickListener 
     private int statusBarHeight = -1;//状态栏高度
     private int initialY = 0;//初始Y轴，松开后恢复初始Y坐标
     private boolean isMove;//移动?点击
-    private LayoutParams lp;
-    private OnListener listener;//监听
+    private FrameLayout.LayoutParams lp;
+    private OnDirectionChangedListener listener;//贴边方向切换监听
+    private OnClickListener clickListener;//点击监听
 
     //--------------------------------------------
     public CircleButton(Context context) {
@@ -129,14 +131,6 @@ public class CircleButton extends ImageView implements View.OnLongClickListener 
         }
     }
 
-    @Override
-    public boolean onLongClick(View view) {
-        if (listener != null) {
-            listener.onLongClick(this);
-        }
-        return false;
-    }
-
     public float getAnimationProgress() {
         return animationProgress;
     }
@@ -163,11 +157,11 @@ public class CircleButton extends ImageView implements View.OnLongClickListener 
     }
 
     private void init(Context context, AttributeSet attrs) {
+        Log.v(TAG, "init()");
         this.context = context;
         this.setFocusable(true);
         this.setScaleType(ScaleType.CENTER_INSIDE);
         setClickable(true);
-        setOnLongClickListener(this);
 
         circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         circlePaint.setStyle(Paint.Style.FILL);
@@ -264,7 +258,7 @@ public class CircleButton extends ImageView implements View.OnLongClickListener 
      */
     private void drawTextInCenter(Canvas canvas) {
         if (text == null) {
-            Log.e(TAG,"text str is null!");
+            Log.w(TAG, "text str is null!");
             return;
         }
         // 计算文字高度,处理垂直居中
@@ -284,7 +278,7 @@ public class CircleButton extends ImageView implements View.OnLongClickListener 
                 downX = lastX = (int) event.getRawX();
                 downY = lastY = (int) event.getRawY();
                 directionX = downX;
-                isMove = false;
+                setMoveStatus(false);
                 dealInit();
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -296,56 +290,59 @@ public class CircleButton extends ImageView implements View.OnLongClickListener 
                     int dx1 = Math.abs((int) event.getRawX() - downX);
                     int dy1 = Math.abs((int) event.getRawY() - downY);
                     if (dx1 > 20 || dy1 > 20) {
-                        isMove = true;
+                        setMoveStatus(true);
                     }
                 }
 
-                int top = this.getTop() + dy;
-                int left = this.getLeft() + dx;
-                //不能移出屏幕控制
-                if (left < 0) {//左
-                    left = 0;
-                }
-                if (top < 0) {//上
-                    top = 0;
-                }
-                if (left > screenWidth - width) {//右
-                    left = screenWidth - width;
-                }
-                if (top > screenHeight - height - statusBarHeight) {//下
-                    top = screenHeight - height - statusBarHeight;
-                }
+                if (isMove) {
+                    int top = this.getTop() + dy;
+                    int left = this.getLeft() + dx;
+                    //不能移出屏幕控制
+                    if (left < 0) {//左
+                        left = 0;
+                    }
+                    if (top < 0) {//上
+                        top = 0;
+                    }
+                    if (left > screenWidth - width) {//右
+                        left = screenWidth - width;
+                    }
+                    if (top > screenHeight - height - statusBarHeight) {//下
+                        top = screenHeight - height - statusBarHeight;
+                    }
 
-                lp.setMargins(left, top, 0, 0);
-                setLayoutParams(lp);
-
-                lastX = (int) event.getRawX();
-                lastY = (int) event.getRawY();
-                //当滑动距离大于屏幕宽度2/3时切换方向
-                if (Math.abs(lastX - directionX) > directionChangeMin) {
-                    //单次滑动来回切换处理
-                    if (directionX > directionChangeMin) {
-                        directionX = 0;
-                    } else {
-                        directionX = screenWidth;
-                    }
-                    if (listener != null) {
-                        listener.onDirectionChanged(this);
-                    }
-                    //从左向右滑动:从右向左滑动
-                    int showX = directionX;
-                    if (directionX > 0) {
-                        showX = screenWidth - left;
-                    } else {
-                        showX = lastX - width;
-                    }
-                    lp.setMargins(showX, top, 0, 0);
+                    lp.setMargins(left, top, 0, 0);
                     setLayoutParams(lp);
+                    Log.v(TAG, "onTouchEvent() move:x" + left + "-y:" + top);
+                    lastX = (int) event.getRawX();
+                    lastY = (int) event.getRawY();
+                    //当滑动距离大于屏幕宽度2/3时切换方向
+                    if (Math.abs(lastX - directionX) > directionChangeMin) {
+                        //单次滑动来回切换处理
+                        if (directionX > directionChangeMin) {
+                            directionX = 0;
+                        } else {
+                            directionX = screenWidth;
+                        }
+                        if (listener != null) {
+                            listener.onDirectionChanged(this, directionX == screenWidth);
+                        }
+                        //从左向右滑动:从右向左滑动
+                        int showX = directionX;
+                        if (directionX > 0) {
+                            showX = screenWidth - left;
+                        } else {
+                            showX = lastX - width;
+                        }
+                        lp.setMargins(showX, top, 0, 0);
+                        setLayoutParams(lp);
+                        Log.v(TAG, "x,y:" + showX + "  " + top);
+                    }
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                if (listener != null && !isMove && !isLongClickable()) {
-                    listener.onClick(this);
+                if (clickListener != null && !isMove && !isLongClickable()) {
+                    clickListener.onClick(this);
                 }
                 int left1 = 0;
                 if (directionX < directionChangeMin) {//靠右
@@ -353,25 +350,17 @@ public class CircleButton extends ImageView implements View.OnLongClickListener 
                 } else {//靠左
                     left1 = screenWidth - width;
                 }
+                //封装在ViewGrop中无法拖动了
                 lp.setMargins(left1, initialY, 0, 0);
                 setLayoutParams(lp);
+                setMoveStatus(false);
                 break;
         }
+
         return super.onTouchEvent(event);
     }
 
-    /**
-     * 判断贴边方向
-     *
-     * @return 左上右下，0，1，2，3
-     */
-    private int getEdge(int left, int right, int bottom) {
-        int edgeId = 0;
-        if (right < left) {
-            edgeId = 2;
-        }
-        return edgeId;
-    }
+
     //-------------------------------
 
     /**
@@ -379,11 +368,11 @@ public class CircleButton extends ImageView implements View.OnLongClickListener 
      *
      * @param y Y轴坐标
      */
-    public void setInitialY(int y) {
+    public void setInitialXY(int x,int y) {
         dealInit();
         initialY = y;
         if (null != lp) {
-            lp.setMargins(getLeft(), y, 0, 0);
+            lp.setMargins(x, y, 0, 0);
             setLayoutParams(lp);
         }
     }
@@ -411,6 +400,16 @@ public class CircleButton extends ImageView implements View.OnLongClickListener 
     }
 
     /**
+     * 设置移动状态
+     *
+     * @param status
+     */
+    private void setMoveStatus(boolean status) {
+        isMove = status;
+        Config.isCircleChildMoved = isMove;
+    }
+
+    /**
      * 处理参数初始化
      */
     private void dealInit() {
@@ -423,30 +422,39 @@ public class CircleButton extends ImageView implements View.OnLongClickListener 
         }
         //LayoutParams初始化
         if (width > 1 && null == lp) {
-            lp = new LayoutParams(getWidth(), getHeight());
+            lp = new FrameLayout.LayoutParams(getWidth(), getHeight());
+            setLayoutParams(lp);
         }
     }
 
     //--------------------------------
 
     /**
-     * 设置事件监听
+     * 设置贴边方向切换事件监听
      *
      * @param listener
      */
-    public void setOnListener(OnListener listener) {
+    public void setOnDirectionChangedListener(OnDirectionChangedListener listener) {
         this.listener = listener;
     }
 
+    public void setOnClickListener(OnClickListener listener) {
+        clickListener = listener;
+    }
+
     /**
-     * 监听设置,点击,长按,拖动贴边方向改变
+     * 监听拖动贴边方向改变
+     * left true
      */
-    public interface OnListener {
+    public interface OnDirectionChangedListener {
+        void onDirectionChanged(View view, boolean right);
+    }
+
+    /**
+     * 单击监听
+     */
+    public interface OnClickListener {
         void onClick(View view);
-
-        void onLongClick(View view);
-
-        void onDirectionChanged(View view);
     }
 
 }

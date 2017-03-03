@@ -57,7 +57,7 @@ public class HorizontalScrollIndicatorView extends HorizontalScrollView implemen
     /**
      * 数据适配器
      */
-    private HorizontalScrollViewAdapter mAdapter;
+    private HorizontalScrollIndicatorAdapter mAdapter;
     /**
      * 每屏幕最多显示的个数
      */
@@ -218,7 +218,7 @@ public class HorizontalScrollIndicatorView extends HorizontalScrollView implemen
      *
      * @param mAdapter
      */
-    public void setAdapter(HorizontalScrollViewAdapter mAdapter) {
+    public void setAdapter(HorizontalScrollIndicatorAdapter mAdapter) {
         this.mAdapter = mAdapter;
         mContainer = (LinearLayout) getChildAt(0);
         // 获得适配器中第一个View

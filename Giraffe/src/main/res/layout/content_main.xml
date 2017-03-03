@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/dp_6"
     android:paddingTop="@dimen/dp_10"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.hu.giraffe.MainActivity"
+    tools:context="com.hu.giraffe.activity.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <com.hu.widget.HalfImageButton
@@ -44,6 +44,7 @@
         android:weightSum="2">
 
         <Button
+            android:id="@+id/main_login_btn"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/dp_10"

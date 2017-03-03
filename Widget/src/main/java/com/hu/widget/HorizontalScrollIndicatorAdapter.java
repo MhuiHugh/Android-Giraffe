@@ -7,14 +7,18 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-public class HorizontalScrollViewAdapter {
+/**
+ * HorizontalScrollIndicatorView
+ * 结合使用，横向滚动颜色选择适配器
+ */
+public class HorizontalScrollIndicatorAdapter {
 
     private int currentIndex = -1;
     private Context mContext;
     private LayoutInflater mInflater;
     private List<Integer> mDatas;
 
-    public HorizontalScrollViewAdapter(Context context, List<Integer> mDatas) {
+    public HorizontalScrollIndicatorAdapter(Context context, List<Integer> mDatas) {
         this.mContext = context;
         mInflater = LayoutInflater.from(context);
         this.mDatas = mDatas;

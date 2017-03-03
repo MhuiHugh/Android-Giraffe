@@ -11,25 +11,31 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.hu.giraffe.R;
 import com.hu.giraffe.utils.LogUtil;
 import com.hu.widget.HalfImageButton;
 import com.hu.widget.HorizontalScrollIndicatorView;
-import com.hu.widget.HorizontalScrollViewAdapter;
+import com.hu.widget.HorizontalScrollIndicatorAdapter;
 import com.hu.widget.StatusBarCompat;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends BaseActivity implements View.OnKeyListener, HorizontalScrollIndicatorView.OnItemClickListener {
+public class MainActivity extends BaseActivity implements View.OnKeyListener, HorizontalScrollIndicatorView.OnItemClickListener{
 
     private final String TAG = this.getClass().getSimpleName();
 
-    HalfImageButton halfImgBtn;
+    Button loginBtn;
+    HalfImageButton halfImgBtn;//图片居中，宽高各占View一半
     HorizontalScrollIndicatorView horizontalScrollIndicatorView;
+
+
+    FrameLayout fl;
 
     //--------------------
     long exitTime = 0;//2秒内点击2次返回退出程序
@@ -38,28 +44,23 @@ public class MainActivity extends BaseActivity implements View.OnKeyListener, Ho
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.v(TAG, "onCreate()");
         init();
     }
 
     protected void onStart() {
         super.onStart();
-
     }
 
     protected void onResume() {
         super.onResume();
-
     }
 
     protected void onPause() {
         super.onPause();
-
     }
 
     protected void onStop() {
         super.onStop();
-
     }
 
     protected void onDestroy() {
@@ -153,9 +154,18 @@ public class MainActivity extends BaseActivity implements View.OnKeyListener, Ho
         for (int i = 0; i < 50; i++) {
             colors.add(Color.argb(255, 50 * i, random.nextInt(255), random.nextInt(255)));
         }
-        horizontalScrollIndicatorView = (HorizontalScrollIndicatorView) this.findViewById(R.id.main_color_indicator);
-        horizontalScrollIndicatorView.setAdapter(new HorizontalScrollViewAdapter(this, colors));
+        horizontalScrollIndicatorView = (HorizontalScrollIndicatorView) findViewById(R.id.main_color_indicator);
+        horizontalScrollIndicatorView.setAdapter(new HorizontalScrollIndicatorAdapter(this, colors));
         horizontalScrollIndicatorView.setOnItemClickListener(this);
+
+        loginBtn = (Button) findViewById(R.id.main_login_btn);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CircleMenuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
