@@ -3,17 +3,21 @@ package com.hu.giraffe.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.hu.giraffe.R;
 import com.hu.giraffe.utils.LogUtil;
@@ -21,21 +25,23 @@ import com.hu.widget.HalfImageButton;
 import com.hu.widget.HorizontalScrollIndicatorView;
 import com.hu.widget.HorizontalScrollIndicatorAdapter;
 import com.hu.widget.StatusBarCompat;
+import com.hu.widget.wheelview.ChangeAddressPopwindow;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends BaseActivity implements View.OnKeyListener, HorizontalScrollIndicatorView.OnItemClickListener{
+import static com.hu.giraffe.R.id.scrollView;
+
+public class MainActivity extends BaseActivity implements View.OnKeyListener, HorizontalScrollIndicatorView.OnItemClickListener {
 
     private final String TAG = this.getClass().getSimpleName();
 
-    Button loginBtn;
+    CoordinatorLayout rootCl;//root
     HalfImageButton halfImgBtn;//图片居中，宽高各占View一半
-    HorizontalScrollIndicatorView horizontalScrollIndicatorView;
-
-
-    FrameLayout fl;
+    HorizontalScrollIndicatorView horizontalScrollIndicatorView;//颜色选择器
+    Button loginBtn;//login
+    ToggleButton lightTbtn;//灯
 
     //--------------------
     long exitTime = 0;//2秒内点击2次返回退出程序
@@ -129,6 +135,8 @@ public class MainActivity extends BaseActivity implements View.OnKeyListener, Ho
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
+        rootCl = (CoordinatorLayout) findViewById(R.id.main_root_cl);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_floating_action_btn);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +146,7 @@ public class MainActivity extends BaseActivity implements View.OnKeyListener, Ho
             }
         });
 
+        //图片占一半按钮
         halfImgBtn = (HalfImageButton) findViewById(R.id.main_half_img_btn_welcome);
         halfImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +158,7 @@ public class MainActivity extends BaseActivity implements View.OnKeyListener, Ho
             }
         });
 
+        //颜色选择器
         List<Integer> colors = new ArrayList<>();
         Random random = new Random(2);
         for (int i = 0; i < 50; i++) {
@@ -158,12 +168,35 @@ public class MainActivity extends BaseActivity implements View.OnKeyListener, Ho
         horizontalScrollIndicatorView.setAdapter(new HorizontalScrollIndicatorAdapter(this, colors));
         horizontalScrollIndicatorView.setOnItemClickListener(this);
 
+        //登录
         loginBtn = (Button) findViewById(R.id.main_login_btn);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CircleMenuActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //灯
+        lightTbtn = (ToggleButton) findViewById(R.id.main_light_tbtn);
+        lightTbtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ChangeAddressPopwindow mChangeAddressPopwindow = new ChangeAddressPopwindow(MainActivity.this);
+                if (isChecked) {
+                    mChangeAddressPopwindow.setAddress("上海", "上海", "静安区");
+                    mChangeAddressPopwindow.showAtLocation(rootCl, Gravity.BOTTOM, 0, 0);
+                    mChangeAddressPopwindow
+                            .setAddresskListener(new ChangeAddressPopwindow.OnAddressCListener() {
+                                @Override
+                                public void onClick(String provinceS, String cityS, String areaS) {
+                                    Log.v(TAG, "city:" + provinceS + "--" + cityS + "--" + areaS);
+                                }
+                            });
+                } else {
+                    mChangeAddressPopwindow.dismiss();
+                }
             }
         });
     }
