@@ -16,8 +16,6 @@ import com.hu.giraffe.utils.Constant;
 import com.hu.giraffe.utils.LogUtil;
 import com.hu.giraffe.utils.SoftKeyboardUtil;
 import com.hu.giraffe.utils.SystemUtil;
-import com.hu.giraffe.widget.dialog.BaseDialogFragment;
-import com.hu.giraffe.widget.dialog.DialogFactory;
 
 /**
  * Activity基类
@@ -78,7 +76,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnK
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
     }
-
 
     //---------------------------事件监听
 
@@ -214,20 +211,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnK
                 finishAllActivity();
             }
         }
-    }
-
-    //-------Dialog相关-----------------------------------
-    public DialogFactory mDialogFactory;
-
-    public BaseDialogFragment.BaseDialogListener getDialogListener() {
-        return mDialogFactory.mListenerHolder.getDialogListener();
-    }
-
-    /**
-     * 清空DialogListenerHolder中的dialog listener
-     */
-    public void clearDialogListener() {
-        mDialogFactory.mListenerHolder.setDialogListener(null);
     }
 
 }
