@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion '26.0.2'
 
     dexOptions {
         javaMaxHeapSize "6g"
@@ -14,9 +14,9 @@ android {
     }
 
     productFlavors {
+        ali {}
         lenovo {}
         tencent {}
-        wandoujia {}
 
         productFlavors.all { flavor ->
             flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
@@ -30,6 +30,7 @@ android {
         versionName "1.0"
         resConfigs "zh"
         multiDexEnabled true
+        flavorDimensions "versionCode"
     }
 
     signingConfigs {
