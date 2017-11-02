@@ -10,8 +10,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import babai.bit.bank.R;
-import babai.bit.bank.utils.DensityUtil;
+import com.hu.giraffe.R;
+import com.hu.giraffe.utils.DensityUtil;
 
 /**
  * Created by Weavey on 2016/9/4.

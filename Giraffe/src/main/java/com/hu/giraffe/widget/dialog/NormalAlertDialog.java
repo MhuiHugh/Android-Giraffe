@@ -9,18 +9,16 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import babai.bit.bank.R;
-import babai.bit.bank.utils.DensityUtil;
+import com.hu.giraffe.R;
+import com.hu.giraffe.utils.DensityUtil;
 
 /**
  * Created by Weavey on 2016/9/3.
  */
 public class NormalAlertDialog {
 
-    private final ImageView mClose;
     private TextView mTitle;
     private TextView mContent;
     private Button mLeftBtn;
@@ -37,7 +35,6 @@ public class NormalAlertDialog {
         mDialog = new Dialog(mBuilder.getContext(), R.style.NormalDialogStyle);
         mDialogView = View.inflate(mBuilder.getContext(), R.layout.dialog_normal, null);
         mTitle = (TextView) mDialogView.findViewById(R.id.dialog_normal_title);
-        mClose = (ImageView) mDialogView.findViewById(R.id.dialog_close_iv);
         mContent = (TextView) mDialogView.findViewById(R.id.dialog_normal_content);
         mLeftBtn = (Button) mDialogView.findViewById(R.id.dialog_normal_leftbtn);
         mRightBtn = (Button) mDialogView.findViewById(R.id.dialog_normal_rightbtn);
@@ -64,15 +61,6 @@ public class NormalAlertDialog {
         } else {
             mTitle.setVisibility(View.GONE);
         }
-        mClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mBuilder.closeClickListener != null) {
-                    mBuilder.closeClickListener.clickSingleButton(NormalAlertDialog.this, view);
-                }
-                dismiss();
-            }
-        });
         if (builder.isSingleMode()) {
             mSingleBtn.setVisibility(View.VISIBLE);
             mLine.setVisibility(View.GONE);

@@ -5,10 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
-import babai.bit.bank.R;
+import com.hu.giraffe.R;
 
 /**
  * Loading加载
@@ -29,13 +26,13 @@ public class LoadingDialog extends Dialog {
     protected void onCreate(Bundle bundle){
         super.onCreate(bundle);
         setContentView(R.layout.dialog_loading);
-        ImageView loadingIv=findViewById(R.id.loading_iv);
-        Glide.with(context)
-                .load(R.drawable.common_loading)
-                .asGif()
-                .error(R.drawable.common_logo)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE) //缓存策略
-                .into(loadingIv);
+        //ImageView loadingIv=findViewById(R.id.loading_iv);
+//        Glide.with(context)
+//                .load(R.drawable.common_loading)
+//                .asGif()
+//                .error(R.drawable.common_logo)
+//                .diskCacheStrategy(DiskCacheStrategy.SOURCE) //缓存策略
+//                .into(loadingIv);
     }
 
 }

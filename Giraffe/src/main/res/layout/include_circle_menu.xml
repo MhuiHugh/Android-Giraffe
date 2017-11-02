@@ -15,16 +15,16 @@
         android:id="@+id/circle_two_cbtn"
         android:layout_width="@dimen/dp_48"
         android:layout_height="@dimen/dp_48"
-        app:cb_color="@color/c_434bf3"
+        app:cb_color="@color/colorAccent"
         app:cb_text="two"
-        app:cb_text_color="@color/c_999999"
+        app:cb_text_color="@color/colorNine"
         app:cb_text_size="16sp" />
 
     <com.hu.widget.CircleButton
         android:id="@+id/circle_one_cbtn"
         android:layout_width="@dimen/dp_48"
         android:layout_height="@dimen/dp_48"
-        app:cb_color="@color/c_eb1eaf"
+        app:cb_color="@color/colorPrimary"
         app:cb_text="one"
         app:cb_text_color="@color/wite"
         app:cb_text_size="16sp" />
@@ -33,9 +33,9 @@
         android:id="@+id/circle_zero_cbtn"
         android:layout_width="@dimen/dp_48"
         android:layout_height="@dimen/dp_48"
-        app:cb_color="@color/c_333333"
+        app:cb_color="@color/colorThree"
         app:cb_text="zero"
-        app:cb_text_color="@color/c_c7edcc"
+        app:cb_text_color="@color/white"
         app:cb_text_size="16sp" />
 
 </com.hu.widget.CircleSixLayout>

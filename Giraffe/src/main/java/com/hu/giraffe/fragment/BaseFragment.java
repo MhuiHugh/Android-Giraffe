@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 
 import com.hu.giraffe.activity.BaseActivity;
 import com.hu.giraffe.utils.LogUtil;
-import com.hu.giraffe.widget.dialog.BaseDialogFragment;
-import com.hu.giraffe.widget.dialog.DialogFactory;
 
 
 /**
@@ -23,7 +21,6 @@ import com.hu.giraffe.widget.dialog.DialogFactory;
  */
 public abstract class BaseFragment extends Fragment {
 
-    protected DialogFactory mDialogFactory;
     protected BaseActivity mBaseActivity;
 
     @Override
@@ -47,8 +44,6 @@ public abstract class BaseFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         LogUtil.d("onActivityCreated()-" + this.getClass().getName());
-        mDialogFactory = new DialogFactory(getChildFragmentManager(), savedInstanceState);
-        mDialogFactory.restoreDialogListener(this);
     }
 
     @Override
@@ -122,7 +117,6 @@ public abstract class BaseFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         LogUtil.d("onSaveInstanceState()-" + this.getClass().getName());
-        mDialogFactory.mListenerHolder.saveDialogListenerKey(outState);
     }
 
     //------自定义方法-----------------------------
@@ -134,18 +128,6 @@ public abstract class BaseFragment extends Fragment {
      */
     protected void onAttachToContext(Context context) {
         //LogUtil.d("onAttachToContext()");
-    }
-
-    //-----Dilaog----------------------------------
-    public BaseDialogFragment.BaseDialogListener getDialogListener() {
-        return mDialogFactory.mListenerHolder.getDialogListener();
-    }
-
-    /**
-     * 清空DialogListenerHolder中的dialog listener
-     */
-    public void clearDialogListener() {
-        mDialogFactory.mListenerHolder.setDialogListener(null);
     }
 
     //------抽象方法----------------------------------

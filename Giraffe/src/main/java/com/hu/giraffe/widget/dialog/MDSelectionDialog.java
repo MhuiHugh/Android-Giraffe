@@ -11,11 +11,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.hu.giraffe.R;
+import com.hu.giraffe.utils.DensityUtil;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import babai.bit.bank.R;
-import babai.bit.bank.utils.DensityUtil;
 
 /**
  * Created by Weavey on 2016/9/4.

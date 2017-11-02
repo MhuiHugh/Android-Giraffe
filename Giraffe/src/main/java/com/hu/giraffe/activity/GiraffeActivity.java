@@ -44,7 +44,6 @@ public class GiraffeActivity extends BaseActivity {
 
     @Override
     public void finishActivity() {
-
         finish();
     }
 

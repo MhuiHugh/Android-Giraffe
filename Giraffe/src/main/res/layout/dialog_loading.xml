@@ -6,7 +6,6 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-
         <ImageView
             android:id="@+id/loading_iv"
             android:layout_width="230px"
@@ -20,7 +19,7 @@
             android:layout_alignParentBottom="true"
             android:gravity="center_horizontal"
             android:textSize="28px"
-            android:textColor="@color/bit_1"
-            android:text="@string/dialog_loading"/>
+            android:textColor="@color/black"
+            android:text="@string/common_loading"/>
 
 </RelativeLayout>
